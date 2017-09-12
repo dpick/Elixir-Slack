@@ -123,7 +123,7 @@ defmodule Slack.Bot do
       slack
     end
 
-    new_process_state = if Map.has_key?(message, :type) do
+    new_process_state = if Map.has_key?(message, :type) || Map.has_key?(message, :reply_to) do
       try do
         {:ok, new_process_state} = bot_handler.handle_event(message, slack, process_state)
         new_process_state
